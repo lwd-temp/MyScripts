@@ -26,15 +26,15 @@ def playsound():
     # 播放音乐alarm.wav
     file="alarm.wav"
     track = pygame.mixer.music.load(file)
-    logit("PlaySound:Play")
+    logit("[PlaySound]Play")
     pygame.mixer.music.play()
     time.sleep(3)
     pygame.mixer.music.stop()
-    logit("PlaySound:Stop")
+    logit("[PlaySound]Stop")
  
 def showmsg(textmsg):
     # 浮动文字
-    logit("GUI:Start"+" msg:"+str(textmsg))
+    logit("[GUI]Start"+" msg:"+str(textmsg))
     # Source:https://stackoverflow.com/questions/21840133/how-to-display-text-on-the-screen-without-a-window-using-python
     label = tkinter.Label(text=textmsg, font=('Times New Roman','80'), fg='red', bg='white')
     label.master.overrideredirect(True)
@@ -62,11 +62,11 @@ def showmsg(textmsg):
     label.pack()
     label.mainloop()
  
-    logit("GUI:Exit"+" msg:"+str(textmsg))
+    logit("[GUI]Exit"+" msg:"+str(textmsg))
  
 def clearmsg():
     # Clear浮动文字，就是上个函数重写了一遍
-    logit("GUI:Clear")
+    logit("[GUI]Clear")
     # Source:https://stackoverflow.com/questions/21840133/how-to-display-text-on-the-screen-without-a-window-using-python
     label = tkinter.Label(text="", font=('Times New Roman','10'), fg='black', bg='white')
     label.master.overrideredirect(True)
@@ -94,7 +94,7 @@ def clearmsg():
     label.pack()
     label.mainloop()
  
-    logit("GUI:Clear Exit")
+    logit("[GUI]Clear Exit")
  
 logit("!!!!!!本次日志开始!!!!!!")
 logit("日志文件"+logname)
@@ -113,7 +113,7 @@ def sleepto(hour,minute):
  
 def ringat(hour,minute,msg):
     # 在某时提醒，超过2h不提醒
-    logit("RingAt:"+str(hour)+" "+str(minute)+" "+str(msg))
+    logit("[RingAt]"+str(hour)+" "+str(minute)+" "+str(msg))
     passit=0
     nowtime=datetime.datetime.now()
     nowmon=nowtime.month
@@ -123,12 +123,12 @@ def ringat(hour,minute,msg):
     strthe=str(nowye)+"-"+str(nowmon)+"-"+str(nowday)+" "+str(hour)+":"+str(minute)+":"+"0.0"
     thetime=datetime.datetime.strptime(strthe,"%Y-%m-%d %H:%M:%S.%f")
     delta=(thetime-nowtime).seconds
-    logit("RingAt:"+"Delta:"+str(delta))
+    logit("[RingAt]"+"Delta:"+str(delta))
     if delta>=7200:
         passit=1
-        logit("RingAt:Pass")
+        logit("[RingAt]Pass")
     if passit==0:
-        logit("RingAt:Sleeping...")
+        logit("[RingAt]Sleeping...")
         time.sleep(delta)
         playsound()
         showmsg(str(msg))
