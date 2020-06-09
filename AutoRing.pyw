@@ -1,3 +1,7 @@
+# AutoRing.pyw
+# 模拟学校上下课铃的程序
+# Author:lwd-temp
+# 需要库pywin32(GUI) pygame(Sound) tkinter(GUI)
 import tkinter
 import threading
 import time
@@ -19,6 +23,7 @@ def logit(msg):
         logfile.write(content)
  
 def playsound():
+    # 播放音乐alarm.wav
     file="alarm.wav"
     track = pygame.mixer.music.load(file)
     logit("PlaySound:Play")
@@ -60,7 +65,7 @@ def showmsg(textmsg):
     logit("GUI:Exit"+" msg:"+str(textmsg))
  
 def clearmsg():
-    # Clear浮动文字
+    # Clear浮动文字，就是上个函数重写了一遍
     logit("GUI:Clear")
     # Source:https://stackoverflow.com/questions/21840133/how-to-display-text-on-the-screen-without-a-window-using-python
     label = tkinter.Label(text="", font=('Times New Roman','10'), fg='black', bg='white')
@@ -149,9 +154,11 @@ ringat(15,50,"8:Class Begin")
 ringat(16,30,"8:Class Over")
 ringat(16,40,"9:Class Begin")
 ringat(17,20,"9:Class Over")
-ringat(17,50,"The First Evening Self-study Begin")
-ringat(18,50,"The First Evening Self-study Over")
-ringat(19,0,"The Second Evening Self-study Begin")
-ringat(20,0,"The Second Evening Self-study Over")
+ringat(17,50,"1st Self-study Begin")
+ringat(18,50,"1st Self-study Over")
+ringat(19,0,"2nd Self-study Begin")
+ringat(20,0,"2nd Self-study Over")
+ringat(20,10,"3rd Self-study Begin")
+ringat(22,0,"3rd Self-study Over")
  
 logit("Work done.Program Exit.")
